@@ -1,0 +1,26 @@
+1. SELECT * FROM STORE WHERE Region='East';
+
+2.
+SELECT * FROM PRODUCT WHERE Product_key IN (
+SELECT PRODUCT.Product_key
+FROM ((SALE_FACT
+JOIN PRODUCT ON SALE_FACT.Product_key = PRODUCT.Product_key)
+JOIN STORE ON SALE_FACT.Store_key = STORE.Store_key)
+WHERE STORE.City = 'New York')
+
+3.
+SELECT SUM(SALE_FACT.Profit)
+FROM SALE_FACT
+JOIN STORE ON SALE_FACT.Store_key = STORE.Store_key
+WHERE STORE.City = 'New York'
+
+4.
+DELETE s
+FROM SALE_FACT s
+JOIN PRODUCT p ON s.Product_key = p.Product_key
+WHERE p.Brand = 'Wolf'
+
+5.
+UPDATE PRODUCT
+SET Brand = 'W'
+WHERE Description = 'Toy Story'
